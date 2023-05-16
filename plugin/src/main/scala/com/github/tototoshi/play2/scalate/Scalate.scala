@@ -15,14 +15,14 @@ class Scalate @Inject() (environment: Environment) {
   import org.fusesource.scalate.util._
 
   class ClassPathResourceLoader extends ResourceLoader {
-    private def using[A, R <: { def close(): Unit }](r: R)(f: R => A): A =
+    private def using[A, R <: AutoCloseable](r: R)(f: R => A): A =
       try { f(r) } finally { r.close() }
 
     override def resource(uri: String): Option[Resource] = {
       environment.resourceAsStream(uri).map { inputStream =>
         using(inputStream) { in =>
           using(Source.fromInputStream(in)) { src =>
-            StringResource(uri, src.getLines.mkString("\n"))
+            StringResource(uri, src.getLines().mkString("\n"))
           }
         }
       }
