@@ -46,7 +46,7 @@ lazy val plugin = Project(
   libraryDependencies ++= Seq(
     "jakarta.inject" % "jakarta.inject-api" % "2.0.1",
     "org.playframework" %% "play" % play.core.PlayVersion.current % "provided",
-    "io.github.scalate" %% "scalate-core" % "1.11.0" % "provided"
+    "io.github.scalate" %% "scalate-core" % "1.11.1" % "provided"
   ),
   publishingSettings
 )
@@ -62,7 +62,7 @@ lazy val playapp = Project(
     scalaVersion := scala213,
     libraryDependencies ++= Seq(
       guice,
-      "io.github.scalate" %% "scalate-core" % "1.11.0",
+      "io.github.scalate" %% "scalate-core" % "1.11.1",
       "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.2" % Test
     ) ++ {
       CrossVersion.partialVersion(scalaVersion.value) match {
